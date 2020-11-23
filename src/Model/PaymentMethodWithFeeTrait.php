@@ -33,7 +33,7 @@ trait PaymentMethodWithFeeTrait
 		return $this->calculator;
 	}
 
-	public function setCalculator(?string $calculator)
+	public function setCalculator(?string $calculator): void
 	{
 		$this->calculator = $calculator;
 	}
@@ -43,7 +43,7 @@ trait PaymentMethodWithFeeTrait
 		return $this->calculatorConfiguration ?? [];
 	}
 
-	public function setCalculatorConfiguration(array $calculatorConfiguration)
+	public function setCalculatorConfiguration(array $calculatorConfiguration): void
 	{
 		$this->calculatorConfiguration = $calculatorConfiguration;
 	}
