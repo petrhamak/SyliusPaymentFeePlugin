@@ -113,8 +113,8 @@ class PaymentMethodTypeExtension extends AbstractTypeExtension
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getExtendedType()
+	public static function getExtendedTypes()
 	{
-		return SyliusPaymentMethodType::class;
+		return [SyliusPaymentMethodType::class];
 	}
 }
