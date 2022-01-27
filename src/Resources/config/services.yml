@@ -57,14 +57,6 @@ services:
             - name: sylius.order_processor
               priotiry: 0
 
-    mango_sylius.payment_fee_plugin.order_processing.order_payment_processor.checkout:
-        class: Sylius\Component\Core\OrderProcessing\OrderPaymentProcessor
-        arguments:
-            - '@sylius.order_payment_provider'
-        tags:
-            - name: sylius.order_processor
-              priotiry: 5
-
     mango_sylius.payment_fee_plugin.block_event_listener.admin.layout.javascripts:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
         arguments:
