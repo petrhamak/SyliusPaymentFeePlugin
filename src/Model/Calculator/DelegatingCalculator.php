@@ -26,9 +26,6 @@ final class DelegatingCalculator implements DelegatingCalculatorInterface
 	public function calculate(PaymentInterface $subject): ?int
 	{
 		$method = $subject->getMethod();
-		if ($method === null) {
-			throw new UndefinedPaymentMethodException('Cannot calculate charge for payment without a defined payment method.');
-		}
 
 		if (!($method instanceof PaymentMethodWithFeeInterface)) {
 			return 0;
