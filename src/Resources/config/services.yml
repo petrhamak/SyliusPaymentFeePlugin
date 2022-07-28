@@ -55,7 +55,7 @@ services:
             $paymentChargesCalculator: '@MangoSylius\PaymentFeePlugin\Model\Calculator\DelegatingCalculator'
         tags:
             - name: sylius.order_processor
-              priotiry: 0
+              priority: 30
 
     mango_sylius.payment_fee_plugin.block_event_listener.admin.layout.javascripts:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
