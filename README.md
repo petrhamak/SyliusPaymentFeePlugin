@@ -42,6 +42,9 @@ For guide how to use your own entity see [Sylius docs - Customizing Models](http
 ```twig
 
 <div class="ui segment">
+
+	<h4 class="ui dividing header">{{ 'sylius.ui.taxes'|trans }}</h4>
+	{{ form_row(form.taxCategory) }}
 	<h4 class="ui dividing header">{{ 'mango-sylius.ui.payment_charges'|trans }}</h4>
 	{{ form_row(form.calculator) }}
 	{% for name, calculatorConfigurationPrototype in form.vars.prototypes %}

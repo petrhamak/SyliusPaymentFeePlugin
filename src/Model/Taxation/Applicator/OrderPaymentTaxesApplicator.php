@@ -86,7 +86,7 @@ class OrderPaymentTaxesApplicator implements OrderTaxesApplicatorInterface
 		}
 
 		$label = $taxRate->getLabel() ?? 'payment tax';
-		$this->addAdjustment($order, (int) $taxAmount, $label, $taxRate->isIncludedInPrice());
+		$this->addAdjustment($order, (int)$taxAmount, $label, $taxRate->isIncludedInPrice(), $taxRate, $paymentMethod);
 	}
 
 	/**
@@ -95,11 +95,23 @@ class OrderPaymentTaxesApplicator implements OrderTaxesApplicatorInterface
 	 * @param string $label
 	 * @param bool $included
 	 */
-	private function addAdjustment(OrderInterface $order, int $taxAmount, string $label, bool $included): void
+	private function addAdjustment(OrderInterface $order, int $taxAmount, string $label, bool $included, $taxRate, $paymentMethod): void
 	{
 		/** @var AdjustmentInterface $paymentTaxAdjustment */
 		$paymentTaxAdjustment = $this->adjustmentFactory
-			->createWithData(AdjustmentInterface::TAX_ADJUSTMENT, $label, $taxAmount, $included);
+			->createWithData(
+				AdjustmentInterface::TAX_ADJUSTMENT,
+				$label,
+				$taxAmount,
+				$included,
+				[
+					"paymentMethodCode" => $paymentMethod->getCode(),
+					"paymentMethodName" => $paymentMethod->getName(),
+					"taxRateCode"        => $taxRate->getCode(),
+					"taxRateName"        => $taxRate->getName(),
+					"taxRateAmount"      => $taxRate->getAmount(),
+				]
+			);
 		$order->addAdjustment($paymentTaxAdjustment);
 	}
 
